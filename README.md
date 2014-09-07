@@ -6,7 +6,7 @@ TSXParser is a Tiled Map Editor *.tsx tileset xml file loader using rapidXML.
 Example
 =======
 
-This example will load tmw_desert_spacing.tsx from the Tiled example set.
+This example will parse and print data from `tmw_desert_spacing.tsx` from the Tiled example set.
 
 ```cpp
 #include <iostream>
