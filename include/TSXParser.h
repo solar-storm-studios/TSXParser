@@ -10,44 +10,51 @@
 #include <rapidxml/rapidxml_utils.hpp>
 
 namespace TSX {
-    class Parser
-    {
+  class Parser
+  {
     public:
-        Parser();
-        virtual ~Parser();
+      Parser( const char* filename );
+      Parser();
+      virtual ~Parser();
 
-        bool load(const char* filename);
+      bool load( const char* filename );
 
-        struct Tile {
-            unsigned int id;
-            std::vector<unsigned int> terrain;
-            std::map<std::string, std::string> property;
-        };
+      struct TilesetImage {
+        std::string source;
+        std::string transparentColor;
+        unsigned int width;
+        unsigned int height;
+      };
 
-        struct Terrain {
-            std::string name;
-            unsigned int tile;
-            std::map<std::string, std::string> property;
-        };
+      struct Tileset {
+        std::string name;
+        unsigned int tileWidth;
+        unsigned int tileHeight;
+        unsigned int spacing;
+        unsigned int margin;
+        int offsetX;
+        int offsetY;
 
-        struct Tileset {
-            std::string name;
-            std::map<std::string, std::string> property;
-            unsigned int tileWidth;
-            unsigned int tileHeight;
-            unsigned int spacing;
-            unsigned int margin;
+        std::map<std::string, std::string> property;
 
-            std::string imagePath;
-            unsigned int imageWidth;
-            unsigned int imageHeight;
-        };
+        TilesetImage image;
+      };
 
-        Tileset tileset;
+      struct Terrain {
+        std::string name;
+        unsigned int tile;
+        std::map<std::string, std::string> property;
+      };
 
-        std::vector<Terrain> terrainList;
-        std::vector<Tile> tileList;
-        //std::vector<unsigned int, std::map<std::string, std::string> tileProperties
-    };
+      struct Tile {
+        unsigned int id;
+        std::vector<unsigned int> terrain;
+        std::map<std::string, std::string> property;
+      };
+
+      Tileset tileset;
+      std::vector<Terrain> terrainList;
+      std::vector<Tile> tileList;
+  };
 }
 #endif // TSXPARSER_H

@@ -24,6 +24,7 @@
 			</Target>
 		</Build>
 		<Compiler>
+			<Add option="-g" />
 			<Add directory="deps" />
 		</Compiler>
 		<Unit filename="include/TSXParser.h" />
